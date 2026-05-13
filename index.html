@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, u
 ser-scalable=no">
-	<title>Text Adventure Game</title>
+	<title>深渊列车 · Abyss Express</title>
     <style>
         body {
             margin: 0;
@@ -143,7 +143,7 @@ js.resolve_input = resolve_input
 
             if (e.data.type === 'ready') {
                 ready = true;
-                term.writeln('Python ready!');
+                term.writeln('深渊列车引擎就绪！');
                 loadGame();  // Start game immediately, no prompt
             }
             else if (e.data.type === 'output') {
@@ -204,10 +204,10 @@ js.resolve_input = resolve_input
         // Load game.py with proper transformation
         async function loadGame() {
             try {
-                const response = await fetch('game.py');
+                const response = await fetch('game_web.py');
                 if (response.ok) {
                     const code = await response.text();
-                    term.writeln('Loading game.py...');
+                    term.writeln('加载深渊列车脚本...');
 
                     // Use your working transformation logic
                     const lines = code.split('\n');
@@ -263,7 +263,7 @@ js.resolve_input = resolve_input
         }
 
         // Initialize
-        term.writeln('Initializing Python...');
+        term.writeln('正在启动深渊列车引擎...');
         worker.postMessage({ type: 'init' });
     </script>
 </body>
