@@ -241,10 +241,10 @@ js.resolve_input = resolve_input
                             line = line.replace(/\binput\s*\(/g, 'await input(');
                         }
 
-                        // Add await to all function calls (not just indented ones)
+                        // Add await to function calls (exclude method calls like obj.func())
                         functionNames.forEach(funcName => {
                             if (line.includes(funcName + '(') && !line.includes('await ' + funcName)) {
-                                const regex = new RegExp(`\\b(${funcName}\\s*\\()`, 'g');
+                                const regex = new RegExp(`(?<!\\.)\\b(${funcName}\\s*\\()`, 'g');
                                 line = line.replace(regex, 'await $1');
                             }
                         });
